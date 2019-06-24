@@ -10,6 +10,8 @@ describe('- timer', function()
 {
 	it('should dispatch timers', function( done )
 	{
+		global.LIQD_FLOW = undefined;
+
 		let timers_cnt = 0, timer = new Timer();
 
 		let start = time_ms();

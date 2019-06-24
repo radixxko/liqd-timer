@@ -7,7 +7,7 @@ describe( 'Tests', ( done ) =>
 
 	for( let file of files )
 	{
-		if( !file.match(/\.js$/) && !file === 'flow.js' ){ continue; }
+		if( !file.match(/\.js$/) && !file === 'timer.js' ){ continue; }
 
 		describe( file, () =>
 		{
