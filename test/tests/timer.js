@@ -142,7 +142,8 @@ describe('- timer', function()
 		}
 
 		assert.ok( timer.postpone( 'not_present', 500 ) === false );
-	});
+	})
+	.timeout( 5000 );
 
 	it('should register global timer', function( done )
 	{
@@ -160,5 +161,25 @@ describe('- timer', function()
 			done();
 		},
 		250 );
+	});
+
+	it('should dispatch timers with timestamp', function( done )
+	{
+		let timers_cnt = 2, timer = new Timer();
+
+		function dispatch()
+		{
+			let now = time_ms();
+
+			if( --timers_cnt === 0 )
+			{
+				setTimeout( done, 200 );
+			}
+
+			assert.ok( timers_cnt >= 0 );
+		}
+
+		timer.set( 'elapsed', dispatch, 315360000001 );
+		timer.set( 'future', dispatch, time_ms() + 100 );
 	});
 });
